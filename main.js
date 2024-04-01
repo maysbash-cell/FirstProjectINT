@@ -1,15 +1,15 @@
-var myCanvas = document.getElementById('myCanvas');
-var score = document.getElementById("score");
-var highScore = document.getElementById("highScore");
-var logoimg = document.getElementById("logoimg");
-var ctx = myCanvas.getContext('2d');
-var canvasWidth = myCanvas.width;
-var canvasHeight = myCanvas.height;
+let myCanvas = document.getElementById('myCanvas');
+//let score = document.getElementById("score");
+//let highScore = document.getElementById("highScore");
+let logoimg = document.getElementById("logoimg");
+let ctx = myCanvas.getContext('2d');
+let canvasWidth = myCanvas.width;
+let canvasHeight = myCanvas.height;
 
-var gridSteps = 10;
+let gridSteps = 10;
 
 
-var snake = {
+let snake = {
     x: canvasWidth / 2,
     y: canvasHeight / 2,
     xSnakeSteps: gridSteps,
@@ -17,18 +17,20 @@ var snake = {
     snakeBodyBalls: [],
     ballsArrCount: 2
 };
-var redPoint = {
+let redPoint = {
     x: canvasWidth / 2,
     y: canvasHeight / 2
 };
-var score = 2;
-var highScore = [];
+let score = 2;
+let highScore = [];
 
 
-var imgSnake = new Image();
+let imgSnake = new Image();
 imgSnake.src = "snakeBall.png";
 imgSnake.onload = () => {
+    //setTimeout(render, 10);
     // console.log('hello5');
+
     setInterval(() => {
         render();
         //console.log('test');
@@ -36,13 +38,16 @@ imgSnake.onload = () => {
 
 
 }
-var imgRedPoint = new Image();
+let imgRedPoint = new Image();
 imgRedPoint.src = "redPoint.png";
 imgRedPoint.onload = function() {
+    //setTimeout(render, 10);
+
     setInterval(() => {
         render();
         //console.log('test2');
     }, 200);
+
 
 }
 
@@ -69,7 +74,7 @@ function render() {
         snake.y = canvasHeight;
     }
     snake.snakeBodyBalls.unshift({ x: snake.x, y: snake.y });
-    for (var i = 0; i < snake.snakeBodyBalls.length; i++) {
+    for (let i = 0; i < snake.snakeBodyBalls.length; i++) {
         console.log(snake.snakeBodyBalls[i]);
         ctx.drawImage(imgSnake, snake.snakeBodyBalls[i].x, snake.snakeBodyBalls[i].y, gridSteps, gridSteps);
         if (snake.snakeBodyBalls.length > snake.ballsArrCount) {
@@ -87,7 +92,7 @@ function render() {
 function redPointCrash() {
     console.log(score);
 
-    for (var i = 0; i < snake.snakeBodyBalls.length; i++) {
+    for (let i = 0; i < snake.snakeBodyBalls.length; i++) {
         // console.log(snake.snakeBodyBalls);
         ctx.drawImage(imgSnake, snake.snakeBodyBalls[i].x, snake.snakeBodyBalls[i].y, gridSteps, gridSteps);
         if (snake.snakeBodyBalls[i].x == redPoint.x && snake.snakeBodyBalls[i].y == redPoint.y) {
@@ -99,7 +104,7 @@ function redPointCrash() {
         }
         ctx.drawImage(imgRedPoint, redPoint.x, redPoint.y, gridSteps, gridSteps);
 
-        for (var j = i + 1; j < snake.snakeBodyBalls.length; j++) {
+        for (let j = i + 1; j < snake.snakeBodyBalls.length; j++) {
             if (snake.snakeBodyBalls[i].x == snake.snakeBodyBalls[j].x && snake.snakeBodyBalls[i].y == snake.snakeBodyBalls[j].y) {
 
                 alert("Game over!");
